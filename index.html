@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -14,27 +15,29 @@
     <div class="container">
 
         <div class="row">
-            <div class="col" id="buttons-view"></div>
+            <div class="col-sm-12 col-lg-8" id="buttons-view"></div>
+            <div class="col-sm-12 col-lg-2 offset-lg-2" id="form-view">
+                <form id="topic-form">
+
+                    <!-- Label for Text Box -->
+                    <label for="user-input"><strong>Enter a Topic</strong></label><br>
+
+                    <!-- Text Input Box -->
+                    <input type="text" id="user-input"><br><br>
+
+                    <!-- Submit Button -->
+                    <input id="add-topic" type="submit" value="Submit">
+                </form>
+            </div>
         </div>
         <br><br>
         <div class="row">
-            <div class="col-10" >
+            <div class="col">
                 <div class="row" id="gifs-view"></div>
             </div>
-            <div class="col-2" id="form-view">
-                    <form id="topic-form">
 
-                            <!-- Label for Text Box -->
-                            <label for="user-input"><strong>Enter a Topic</strong></label><br>
-                        
-                            <!-- Text Input Box -->
-                            <input type="text" id="user-input"><br><br>
-                        
-                            <!-- Submit Button -->
-                            <input id="add-topic" type="submit" value="Submit">
-                          </form>
-            </div>
         </div>
+        <div class="row justify-content-center" id="loadbutton"></div>
 
 
 
@@ -43,10 +46,8 @@
 
 
 
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
     <script src="app.js"></script>
 </body>
 
