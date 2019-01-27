@@ -19,7 +19,7 @@ function displayGif(topic) {
 
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&limit=10&api_key=6JaUGwfaleO0j2FHhpdjYRWk1uu1MfZ0";
 
-    // Creates AJAX call for the specific movie button being clicked
+   
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -29,19 +29,20 @@ function displayGif(topic) {
         var arr = response.data;
         $("#gifs-view").empty();
 
-        arr.forEach(function (gif) {
+        arr.forEach(function (element) {
             var theTopic = $("<div>");
             $(theTopic).addClass("col");
-            var rating = gif.rating.toUpperCase();
+            var rating = element.rating.toUpperCase();
             console.log(rating);
 
             var theRating = $("<h4>");
 
             $(theRating).text("Rating: " + rating);
-            var image = gif.images.fixed_height_still.url;
+            var image = element.images.fixed_width_still.url;
             var theImage = $("<img src=" + image + " alt='Smiley face' >");
-            console.log(gif.images.fixed_height_still.url);
-
+            theImage.attr("gif", element.images.fixed_width.url);
+            theImage.attr("static", element.images.fixed_width_still.url);
+            theImage.attr("item", element.id);
             
 
             $(theTopic).append(theImage);
@@ -54,6 +55,22 @@ function displayGif(topic) {
 
 };
 
+var alreadyClicked = [];
+$(document).on("click", "img", function(){
+
+    if(alreadyClicked.includes($(this).attr("item"))){
+        
+        $(this).attr("src", $(this).attr("static"));
+        alreadyClicked.remove($(this).attr("item"));
+        
+    }else{
+        
+        alreadyClicked.push($(this).attr("item"));
+        $(this).attr("src", $(this).attr("gif"));
+
+    }
+})
+
 $(document).on("click", ".btn", function () {
 
     var chosenTopic = $(this).attr("data-name");
@@ -63,13 +80,8 @@ $(document).on("click", ".btn", function () {
 
 $("#add-topic").on("click", function (event) {
     event.preventDefault();
-    // This line of code will grab the input from the textbox
     var topic = $("#user-input").val().trim();
-
-    // The movie from the textbox is then added to our array
-    topics.push(topic);
-
-    // Calling renderButtons which handles the processing of our movie array
+    topics.push(topic);    
     renderButtons();
 });
 
